@@ -1,0 +1,24 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Forky App is a web application project developed as part of the Udemy course The Complete JavaScript Course 2025: From Zero to Expert! by Jonas Schmedtmann.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burhanudinrabbani666/forky-app.git"
+  },
+  "author": "burhanudin rabbani and Jonas Schmedtmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burhanudinrabbani666/forky-app/issues"
+  },
+  "homepage": "https://github.com/burhanudinrabbani666/forky-app#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.3",
+    "parcel": "^2.16.3"
+  }
+}
