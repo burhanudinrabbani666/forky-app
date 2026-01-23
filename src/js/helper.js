@@ -1,20 +1,3 @@
-# HELPER AND CONFIGURATION FUNCTION
-
-Create file that can put variables can accross file that define something. link url or some number divede.
-
-name file:
-
-- `config.js`
-- `helper.js`
-
-and adding request time out with `new Promise.race([])`
-
-```js
-// config.js
-export const API_URL = `https://forkify-api.jonas.io/api/v2/recipes`;
-export const TIME_OUT_SECOND = 10;
-
-//helper.js
 import { TIME_OUT_SECOND } from "./config";
 
 const timeout = function (s) {
@@ -38,6 +21,3 @@ export async function getJSON(url) {
     throw error;
   }
 }
-```
-
-[Next: Helper and configuration function](./05-helper-and-configuration-function.md)
