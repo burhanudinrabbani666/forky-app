@@ -1,9 +1,9 @@
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
+import searchView from "./views/searchView.js";
 
 import "core-js/stable";
 import "regenerator-runtime/runtime.js";
-// 1. CHANGE EVERY PATH A ICON (src/img/icons.svg) TO ==> ${icons}. THIS IS THE PARCEL WAY
 
 async function showRecipe() {
   try {
@@ -24,8 +24,26 @@ async function showRecipe() {
   }
 }
 
+async function controlSearcResults() {
+  try {
+    // 1) GET SEARCH QUERY
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    // 2) LOAD SEARCH QUERY
+    await model.loadSearchResults(query);
+
+    // 3) RENDER RESULTS
+
+    console.log(model.state.search.results);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function init() {
   recipeView.addHandlerRender(showRecipe);
+  searchView.addHandlerSearch(controlSearcResults);
 }
 
 init();
