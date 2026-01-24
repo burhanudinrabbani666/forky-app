@@ -1,16 +1,13 @@
 import icons from "url:../../img/icons.svg"; // PARCEL: V.2
 import Fraction from "fraction.js";
 
-class recipeView {
-  #parentElement = document.querySelector(".recipe");
-  #recipeViewData;
-  #errorMessage = "We Could not find that recipe. Please try another one!";
-  #successMessage = "";
+import View from "./view.js";
 
-  render(data) {
-    this.#recipeViewData = data;
-    this.#parentElement.innerHTML = this.#generateHtml();
-  }
+class recipeView extends View {
+  _parentElement = document.querySelector(".recipe");
+  _recipeViewData;
+  _errorMessage = "We Could not find that recipe. Please try another one!";
+  _successMessage = "";
 
   addHandlerRender(handleFunction) {
     ["hashchange", "load"].forEach((event) =>
@@ -18,12 +15,12 @@ class recipeView {
     );
   }
 
-  #generateHtml() {
+  _generateHtml() {
     return `
         <figure class="recipe__fig">
-          <img src="${this.#recipeViewData.image}" alt="${this.#recipeViewData.title}" class="recipe__img" />
+          <img src="${this._recipeViewData.image}" alt="${this._recipeViewData.title}" class="recipe__img" />
           <h1 class="recipe__title">
-            <span>${this.#recipeViewData.title}</span>
+            <span>${this._recipeViewData.title}</span>
           </h1>
         </figure>
 
@@ -32,14 +29,14 @@ class recipeView {
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-clock"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--minutes">${this.#recipeViewData.cookingTime}</span>
+            <span class="recipe__info-data recipe__info-data--minutes">${this._recipeViewData.cookingTime}</span>
             <span class="recipe__info-text">minutes</span>
           </div>
           <div class="recipe__info">
             <svg class="recipe__info-icon">
               <use href="${icons}#icon-users"></use>
             </svg>
-            <span class="recipe__info-data recipe__info-data--people">${this.#recipeViewData.servings}</span>
+            <span class="recipe__info-data recipe__info-data--people">${this._recipeViewData.servings}</span>
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
@@ -57,9 +54,6 @@ class recipeView {
           </div>
 
           <div class="recipe__user-generated">
-            <svg>
-              <use href="${icons}#icon-user"></use>
-            </svg>
           </div>
           <button class="btn--round">
             <svg class="">
@@ -71,7 +65,7 @@ class recipeView {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-            ${this.#recipeViewData.ingredients.map(this.#generateHtmlIngredients).join("")}
+            ${this._recipeViewData.ingredients.map(this._generateHtmlIngredients).join("")}
           </ul>
         </div>
 
@@ -79,12 +73,12 @@ class recipeView {
           <h2 class="heading--2">How to cook it</h2>
           <p class="recipe__directions-text">
             This recipe was carefully designed and tested by
-            <span class="recipe__publisher">${this.#recipeViewData.publisher}</span>. Please check out
+            <span class="recipe__publisher">${this._recipeViewData.publisher}</span>. Please check out
             directions at their website.
           </p>
           <a
             class="btn--small recipe__btn"
-            href="${this.#recipeViewData.sourceUrl}"
+            href="${this._recipeViewData.sourceUrl}"
             target="_blank"
           >
             <span>Directions</span>
@@ -96,18 +90,7 @@ class recipeView {
     `;
   }
 
-  renderSpiner() {
-    const html = `
-          <div class="spinner">
-            <svg>
-              <use href="${icons}#icon-loader"></use>
-            </svg>
-          </div>
-    `;
-    this.#parentElement.innerHTML = html;
-  }
-
-  #generateHtmlIngredients(ingredient) {
+  _generateHtmlIngredients(ingredient) {
     return `
      <li class="recipe__ingredient">
        <svg class="recipe__icon">
@@ -120,36 +103,6 @@ class recipeView {
        </div>
      </li>              
    `;
-  }
-
-  renderErrorMessage(message = this.#errorMessage) {
-    const html = `<div class="error">
-            <div>
-              <svg>
-                <use href="${icons}#icon-alert-triangle"></use>
-              </svg>
-            </div>
-            <p>${message}</p>
-          </div>
-          `;
-
-    this.#parentElement.innerHTML = html;
-  }
-
-  renderMessage() {
-    const html = `
-            <div class="message">
-          <div>
-            <svg>
-              <use href="${icons}#icon-smile"></use>
-            </svg>
-          </div>
-          <p>${this.#successMessage}</p>
-        </div>
-
-    `;
-
-    this.#parentElement.innerHTML = html;
   }
 }
 
