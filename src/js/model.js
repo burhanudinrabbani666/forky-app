@@ -22,6 +22,6 @@ export async function loadRecipe(recipeId) {
       ingredients: recipeAPI.ingredients,
     };
   } catch (error) {
-    console.error(`${error} 💥💥💥💥`);
+    throw error;
   }
 }
