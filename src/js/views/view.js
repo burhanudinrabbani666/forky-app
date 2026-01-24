@@ -4,6 +4,8 @@ export default class View {
   _recipeViewData;
 
   render(data) {
+    if (data.length === 0) return this.renderErrorMessage();
+
     this._recipeViewData = data;
     this._parentElement.innerHTML = this._generateHtml();
   }

@@ -3,6 +3,8 @@ import icons from "url:../../img/icons.svg"; // PARCEL: V.2
 
 class ResultsView extends View {
   _parentElement = document.querySelector(".results");
+  _recipeViewData;
+  _errorMessage = "No recipies for your query. Please try Again 😀";
 
   _generateHtml() {
     const results = this._recipeViewData
