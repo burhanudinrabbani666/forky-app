@@ -6,10 +6,6 @@ import resultsView from "./views/resultsView.js";
 import "core-js/stable";
 import "regenerator-runtime/runtime.js";
 
-if (module.hot) {
-  module.hot.accept();
-}
-
 async function showRecipe() {
   try {
     // GET ID BY HASH IN WINDOWS
@@ -41,7 +37,7 @@ async function controlSearcResults() {
     await model.loadSearchResults(query);
 
     // 3) RENDER RESULTS
-    resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultPage(3));
   } catch (error) {
     console.log(error);
   }

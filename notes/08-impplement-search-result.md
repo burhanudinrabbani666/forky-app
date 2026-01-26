@@ -55,3 +55,5 @@ export async function loadSearchResults(query) {
   } catch (error) {}
 }
 ```
+
+[Next: Implement pagination](./08a-implement-pagination.md)
