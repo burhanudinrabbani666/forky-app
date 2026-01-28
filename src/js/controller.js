@@ -16,6 +16,9 @@ async function controlShowRecipe() {
     if (!recipeId) return;
     recipeView.renderSpiner();
 
+    // 0. UPDATE RESULTS VIEW TO MARK SELECTED SEARCH RESULTS
+    resultsView.update(model.getSearchResultPage());
+
     // 1) LOADING RECIPE
     await model.loadRecipe(recipeId);
 
@@ -60,7 +63,7 @@ function controlServings(newServings) {
   model.updateServings(newServings);
 
   // 2. UPDATE THE RECIPE VIEW
-  recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 }
 
 function initial() {

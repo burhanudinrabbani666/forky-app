@@ -26,8 +26,6 @@ class recipeView extends View {
   }
 
   _generateHtml() {
-    console.log(this._recipeViewData);
-
     return `
         <figure class="recipe__fig">
           <img src="${this._recipeViewData.image}" alt="${this._recipeViewData.title}" class="recipe__img" />
