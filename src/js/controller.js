@@ -38,7 +38,7 @@ async function controlSearcResults() {
     await model.loadSearchResults(query);
 
     // 3) RENDER RESULTS
-    resultsView.render(model.getSearchResultPage(1));
+    resultsView.render(model.getSearchResultPage());
 
     // 4) RENDER INITIAL PAGINATON
     paginationViews.render(model.state.search);
@@ -47,9 +47,18 @@ async function controlSearcResults() {
   }
 }
 
+function controlPagination(goToPage) {
+  // 1. RENDER NEW RESULT
+  resultsView.render(model.getSearchResultPage(goToPage));
+
+  // 1. RENDER NEW PAGINATION
+  paginationViews.render(model.state.search);
+}
+
 function init() {
   recipeView.addHandlerRender(showRecipe);
   searchView.addHandlerSearch(controlSearcResults);
+  paginationViews.addHandleClick(controlPagination);
 }
 
 init();

@@ -13,4 +13,40 @@ export function getSearchResultPage(page = state.search.page) {
 }
 ```
 
+creating subcribe and publisher pattern for click event
+
+```js
+function controlPagination(goToPage) {
+  // 1. RENDER NEW RESULT
+  resultsView.render(model.getSearchResultPage(goToPage));
+
+  // 2. RENDER NEW PAGINATION
+  paginationViews.render(model.state.search);
+}
+
+function init() {
+  paginationViews.addHandleClick(controlPagination);
+}
+
+init();
+```
+
+`paginationVies.js`
+
+```js
+  addHandleClick(handler) {
+    this._parentElement.addEventListener("click", (event) => {
+      // 1. GET DOM
+      const btn = event.target.closest(".btn--inline");
+      if (!btn) return;
+
+      // 2. GET DATA FROM DATA SET
+      const goToPage = Number(btn.dataset.goto);
+
+      handler(goToPage);
+    });
+  }
+
+```
+
 [Next: Updating recipe](./09-updating-recipe.md)

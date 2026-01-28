@@ -4,6 +4,19 @@ import icons from "url:../../img/icons.svg"; // PARCEL: V.2
 class PaginationView extends View {
   _parentElement = document.querySelector(".pagination");
 
+  addHandleClick(handler) {
+    this._parentElement.addEventListener("click", (event) => {
+      // 1. GET DOM
+      const btn = event.target.closest(".btn--inline");
+      if (!btn) return;
+
+      // 2. GET DATA FROM DATA SET
+      const goToPage = Number(btn.dataset.goto);
+
+      handler(goToPage);
+    });
+  }
+
   _generateHtml() {
     const currentPage = this._recipeViewData.page;
     const numPage = Math.ceil(
@@ -12,48 +25,37 @@ class PaginationView extends View {
 
     // page 1, and there are other page
     if (currentPage === 1 && numPage > 1) {
-      return `
-          <button class="btn--inline pagination__btn--next">
-          <span>Page ${currentPage + 1}</span>
-          <svg class="search__icon">
-          <use href="${icons}#icon-arrow-right"></use>
-          </svg>
-          </button>
-      `;
+      return this._button("next", currentPage);
     }
 
     // last page
     if (currentPage === numPage && numPage > 1) {
-      return `
-      <button class="btn--inline pagination__btn--next">
-      <svg class="search__icon">
-      <use href="${icons}#icon-arrow-left"></use>
-      </svg>
-      <span>Page ${currentPage - 1}</span>
-      </button>
-      `;
+      return this._button("prev", currentPage);
     }
     // other page
     if (currentPage < numPage) {
       return `
-          <button class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>${currentPage + 1}</span>
-          </button>
-          <button class="btn--inline pagination__btn--next">
-            <span>Page ${currentPage + 1}</span>
-            <svg class="search__icon">
-              <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-          </button>
-
+      ${this._button("next", currentPage)}
+      ${this._button("prev", currentPage)}    
       `;
     }
 
     // page 1, and there no other page
     return ``;
+  }
+
+  _button(arrow, currentPage) {
+    const numberPage = arrow === "next" ? currentPage + 1 : currentPage - 1;
+    const arrowIcon = arrow === "next" ? "right" : "left";
+
+    return `
+        <button class="btn--inline pagination__btn--${arrow}" data-goto="${numberPage}">
+          <svg class="search__icon">
+            <use href="${icons}#icon-arrow-${arrowIcon}"></use>
+          </svg>
+          <span>Page ${numberPage}</span>
+        </button>
+    `;
   }
 }
 
