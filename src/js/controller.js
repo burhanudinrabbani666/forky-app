@@ -7,7 +7,7 @@ import paginationViews from "./views/paginationViews.js";
 import "core-js/stable";
 import "regenerator-runtime/runtime.js";
 
-async function showRecipe() {
+async function controlShowRecipe() {
   try {
     // GET ID BY HASH IN WINDOWS
     const recipeId = window.location.hash.slice(1);
@@ -51,14 +51,23 @@ function controlPagination(goToPage) {
   // 1. RENDER NEW RESULT
   resultsView.render(model.getSearchResultPage(goToPage));
 
-  // 1. RENDER NEW PAGINATION
+  // 2. RENDER NEW PAGINATION
   paginationViews.render(model.state.search);
 }
 
-function init() {
-  recipeView.addHandlerRender(showRecipe);
+function controlServings(newServings) {
+  // 1. UPDATE THE RECIPE SERVINGS (IN STATE)
+  model.updateServings(newServings);
+
+  // 2. UPDATE THE RECIPE VIEW
+  recipeView.render(model.state.recipe);
+}
+
+function initial() {
+  recipeView.addHandlerRender(controlShowRecipe);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearcResults);
   paginationViews.addHandleClick(controlPagination);
 }
 
-init();
+initial();

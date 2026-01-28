@@ -56,3 +56,16 @@ export function getSearchResultPage(page = state.search.page) {
 
   return state.search.results.slice(start, end);
 }
+
+export function updateServings(newServings) {
+  console.log(newServings);
+  // 1. UPDATE INGREDIENTS
+  state.recipe.ingredients.forEach(
+    (ingredient) =>
+      (ingredient.quantity =
+        (ingredient.quantity * newServings) / state.recipe.servings),
+  );
+
+  // 2. UPDATE NEW SERVINGS
+  state.recipe.servings = newServings;
+}
