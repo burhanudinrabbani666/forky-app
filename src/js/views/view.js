@@ -28,7 +28,6 @@ export default class View {
         !newEl.isEqualNode(currentEl) &&
         newEl.firstChild?.nodeValue.trim() !== ""
       ) {
-        console.log(newEl.firstChild.nodeValue.trim(), "💥");
         currentEl.textContent = newEl.textContent;
       }
 

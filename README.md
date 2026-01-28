@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="./src/img/favicon.png" alt="logo"/>
+</div>
 <h1 align="center">Forky App 🍴</h1>
 <div align="center">
   <img 
@@ -46,20 +49,20 @@ This project serves as a hands-on learning exercise to strengthen my understandi
 
 ## Notes of courses
 
-| No  | Topic                                                                                     | Status | Notes |
-| --- | ----------------------------------------------------------------------------------------- | ------ | ----- |
-|     | [Loading a recipe form api](./notes/01-loadig-a-recipe-from-api.md)                       | ⏳     |       |
-|     | [Rendering the recipe](./notes/02-rendering-the-recipe.md)                                | ⏳     |       |
-|     | [Listening load and hash change](./notes/03-listening-load-and-hash-change.md)            | ⏳     |       |
-|     | [The MVC architecture](./notes/04-the-mvc-architecthure.md)                               | ⏳     |       |
-|     | [Helper and configuration files](./notes/05-helper-and-configuration-function.md)         | ⏳     |       |
-|     | [Event handler in MVC](./notes/06-event-handler.md)                                       | ⏳     |       |
-|     | [Implement error and success messages](./notes/07-implement-error-and-success-message.md) | ⏳     |       |
-|     | [Implement Search result](./notes/08-impplement-search-result.md)                         | ⏳     |       |
-|     | [Implement pagination](./notes/08a-implement-pagination.md)                               | ⏳     |       |
-|     | [Updating recipe](./notes/09-updating-recipe.md)                                          | ⏳     |       |
-|     | [Developing a DOM alghoritmh](./notes/10-developing-dom-alghortihm.md)                    | ⏳     |       |
-|     | [Implement Bookmark](./notes/11-implement-bookmark.md)                                    | ⏳     |       |
-|     | [Stroing bookmark with localstorage](./notes/12-storing-bookmark-with-localstorage.md)    | ⏳     |       |
-|     | [Updating a new recipe](./notes/13-updating-new-recipe.md)                                | ⏳     |       |
-|     | [Warp up](./notes/14-warp-up.md)                                                          | ⏳     |       |
+| No  | Topic                                                                                     | Status       |
+| --- | ----------------------------------------------------------------------------------------- | ------------ |
+| 1   | [Loading a recipe form api](./notes/01-loadig-a-recipe-from-api.md)                       | ✅ Completed |
+| 2   | [Rendering the recipe](./notes/02-rendering-the-recipe.md)                                | ✅ Completed |
+| 3   | [Listening load and hash change](./notes/03-listening-load-and-hash-change.md)            | ✅ Completed |
+| 4   | [The MVC architecture](./notes/04-the-mvc-architecthure.md)                               | ✅ Completed |
+| 5   | [Helper and configuration files](./notes/05-helper-and-configuration-function.md)         | ✅ Completed |
+| 6   | [Event handler in MVC](./notes/06-event-handler.md)                                       | ✅ Completed |
+| 7   | [Implement error and success messages](./notes/07-implement-error-and-success-message.md) | ✅ Completed |
+| 8   | [Implement Search result](./notes/08-impplement-search-result.md)                         | ✅ Completed |
+| 9   | [Implement pagination](./notes/08a-implement-pagination.md)                               | ✅ Completed |
+| 10  | [Updating recipe](./notes/09-updating-recipe.md)                                          | ✅ Completed |
+| 11  | [Developing a DOM alghoritmh](./notes/10-developing-dom-alghortihm.md)                    | ✅ Completed |
+| 12  | [Implement Bookmark](./notes/11-implement-bookmark.md)                                    | ⏳           |
+| 13  | [Stroing bookmark with localstorage](./notes/12-storing-bookmark-with-localstorage.md)    | ⏳           |
+| 14  | [Updating a new recipe](./notes/13-updating-new-recipe.md)                                | ⏳           |
+| 15  | [Warp up](./notes/14-warp-up.md)                                                          | ⏳           |
