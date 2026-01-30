@@ -3,10 +3,12 @@ import icons from "url:../../img/icons.svg"; // PARCEL: V.2
 export default class View {
   _recipeViewData;
 
-  render(data) {
+  render(data, render = true) {
     if (data.length === 0) return this.renderErrorMessage();
-
     this._recipeViewData = data;
+
+    if (!render) return this._generateHtml();
+
     this._parentElement.innerHTML = this._generateHtml();
   }
 
