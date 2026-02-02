@@ -1,5 +1,5 @@
 import { API_URL, RESULT_PER_PAGE } from "./config";
-import { getJSON } from "./helper";
+import { getJSON, sendJson } from "./helper";
 
 export const state = {
   recipe: {},
@@ -14,7 +14,7 @@ export const state = {
 
 export async function loadRecipe(recipeId) {
   try {
-    const data = await getJSON(`${API_URL}/${recipeId}`);
+    const data = await getJSON(`${API_URL}${recipeId}`);
 
     // DESTRUCTURING
     const { recipe: recipeAPI } = data.data;
@@ -43,7 +43,7 @@ export async function loadRecipe(recipeId) {
 export async function loadSearchResults(query) {
   try {
     state.search.query = query;
-    const data = await getJSON(`${API_URL}/?search=${query}`);
+    const data = await getJSON(`${API_URL}?search=${query}`);
     state.search.page = 1;
     state.search.results = data.data.recipes.map((recipe) => {
       return {
@@ -111,4 +111,41 @@ function init() {
 }
 
 init();
-console.log(state.bookmarks);
+
+export async function uploadRecipe(newRecipe) {
+  console.log(Object.entries(newRecipe));
+
+  try {
+    const ingredients = Object.entries(newRecipe)
+      .filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
+      .map((ing) => {
+        const ingArr = ing[1].replaceAll(" ", "").split(",");
+        if (ingArr.length !== 3)
+          throw new Error(
+            "Wrong ingeredients format! Please use the correct format :)",
+          );
+
+        const [quantity, unit, decription] = ingArr;
+
+        return {
+          quantity: quantity ? Number(quantity) : null,
+          unit,
+          decription,
+        };
+      });
+
+    const recipe = {
+      title: newRecipe.title,
+      source_url: newRecipe.sourceUrl,
+      image_url: newRecipe.image,
+      publisher: newRecipe.publisher,
+      cooking_time: Number(newRecipe.cookingTime),
+      servings: Number(newRecipe.servings),
+      ingredients,
+    };
+
+    sendJson(`${API_URL}`);
+  } catch (error) {
+    throw error;
+  }
+}

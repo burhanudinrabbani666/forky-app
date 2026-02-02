@@ -21,3 +21,25 @@ export async function getJSON(url) {
     throw error;
   }
 }
+
+export async function sendJson(url, uploadData) {
+  try {
+    const fetchPro = fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(uploadData),
+    });
+
+    const res = await Promise.race([fetchPro, timeout(TIME_OUT_SECOND)]);
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(`${data.message} (${data.status})`);
+
+    return data;
+  } catch (error) {
+    // THROW ERROR TO THE VARIABLES CALL THIS FUNCTION
+    throw error;
+  }
+}

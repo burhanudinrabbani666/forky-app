@@ -24,7 +24,6 @@ async function controlShowRecipe() {
     // 1) UPDATING BOOKMARK
     bookmarkView.update(model.state.bookmarks);
 
-    console.log(model.state.bookmarks);
     // 2) LOADING RECIPE
     await model.loadRecipe(recipeId);
 
@@ -89,8 +88,13 @@ function controllBookmark() {
   bookmarkView.render(model.state.bookmarks);
 }
 
-function controlAddRecipe(newRecipe) {
-  console.log(newRecipe);
+async function controlAddRecipe(newRecipe) {
+  try {
+    await model.uploadRecipe(newRecipe);
+  } catch (error) {
+    console.log(`💥`, error);
+    addRecipeView.renderErrorMessage(error.message);
+  }
 
   // Upload the new recipe data
 }
