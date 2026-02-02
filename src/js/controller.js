@@ -17,17 +17,21 @@ async function controlShowRecipe() {
     if (!recipeId) return;
     recipeView.renderSpiner();
 
-    // 0. UPDATE RESULTS VIEW TO MARK SELECTED SEARCH RESULTS
+    // 0) UPDATE RESULTS VIEW TO MARK SELECTED SEARCH RESULTS
     resultsView.update(model.getSearchResultPage());
+
+    // 1) UPDATING BOOKMARK
     bookmarkView.update(model.state.bookmarks);
 
-    // 1) LOADING RECIPE
+    console.log(model.state.bookmarks);
+    // 2) LOADING RECIPE
     await model.loadRecipe(recipeId);
 
-    // 2) RENDERING RECIPE
+    // 3) RENDERING RECIPE
     recipeView.render(model.state.recipe);
   } catch (error) {
     recipeView.renderErrorMessage();
+    console.error(error);
   }
 }
 
@@ -68,7 +72,7 @@ function controlServings(newServings) {
   recipeView.update(model.state.recipe);
 }
 
-function controlBookmark() {
+function controlAddBookmark() {
   // 1) ADD OR REMOVE BOOKMARK
   if (!model.state.recipe.bookmarked) model.addBookmarked(model.state.recipe);
   else model.deleteBookmark(model.state.recipe.id);
@@ -80,10 +84,16 @@ function controlBookmark() {
   bookmarkView.render(model.state.bookmarks);
 }
 
+function controllBookmark() {
+  bookmarkView.render(model.state.bookmarks);
+}
+
 function initial() {
+  bookmarkView.addHandleRender(controllBookmark); // set first render
+
   recipeView.addHandlerRender(controlShowRecipe);
   recipeView.addHandlerUpdateServings(controlServings);
-  recipeView.addHandleBookmark(controlBookmark);
+  recipeView.addHandleBookmark(controlAddBookmark);
 
   searchView.addHandlerSearch(controlSearcResults);
   paginationViews.addHandleClick(controlPagination);

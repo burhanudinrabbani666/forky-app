@@ -78,19 +78,37 @@ export function updateServings(newServings) {
   state.recipe.servings = newServings;
 }
 
+function persistBookmaark() {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+}
+
 export function addBookmarked(recipe) {
-  // React way
+  // REACT WAY
   state.bookmarks = [...state.bookmarks, recipe];
 
-  // Makr current recipe as bookmark
+  // MARK CURRENT RECIPE AS BOOKMARK
   if (recipe.id === state.recipe.id) {
     state.recipe.bookmarked = true;
   }
+
+  persistBookmaark();
 }
+
 export function deleteBookmark(id) {
   state.bookmarks = state.bookmarks.filter((recipe) => recipe.id !== id);
 
   if (id === state.recipe.id) {
     state.recipe.bookmarked = false;
   }
+
+  persistBookmaark();
 }
+
+function init() {
+  const storage = localStorage.getItem("bookmarks");
+
+  if (storage) state.bookmarks = JSON.parse(storage);
+}
+
+init();
+console.log(state.bookmarks);

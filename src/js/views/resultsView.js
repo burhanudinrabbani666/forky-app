@@ -7,7 +7,6 @@ class ResultsView extends View {
   _errorMessage = "No recipies for your query. Please try Again 😀";
 
   _generateHtml() {
-    console.log(this._recipeViewData);
     const results = this._recipeViewData
       .map((result) => previewView.render(result, false))
       .join("");
