@@ -1,8 +1,3 @@
-# UPDATING NEW RECIPE
-
-adding pop up form and get the data from form with `new FormData()` and change it to object with `Object.formEntries()`
-
-```js
 import View from "./view";
 import icons from "url:../../img/icons.svg"; // PARCEL: V.2
 
@@ -47,4 +42,3 @@ class addRecipeView extends View {
 }
 
 export default new addRecipeView();
-```
